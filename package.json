@@ -4,6 +4,7 @@
   "author": "Rea Chan <32399723@qq.com>",
   "private": true,
   "scripts": {
+    "dev": "webpack-dev-server --inline --hot",
     "build": "rm -rf ./dist && webpack --progress --hide-modules",
     "start": "node server.js"
   },
@@ -26,6 +27,7 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.26.0",
     "style-loader": "^0.13.1",
-    "vue-loader": "^10.0.2"
+    "vue-loader": "^10.0.2",
+    "webpack-dev-server": "^1.16.2"
   }
 }

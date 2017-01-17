@@ -3,11 +3,8 @@
 import './main.css'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import routes from './routes'
 
-const routes = {
-	'/': 'index',
-	'/index': 'index'
-}
 
 const app = new Vue({
   el: '#Rea-Home',
@@ -26,3 +23,4 @@ const app = new Vue({
     return h(this.ViewComponent)
   }
 })
+

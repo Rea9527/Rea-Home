@@ -1,22 +1,65 @@
 <template>
   <div class="container">
-    <ul>
-      <li>
-        <v-link href="/">Home</v-link>
-        <v-link href="/about">About</v-link>
-      </li>
-    </ul>
+    <div class="nav" id="myNav">
+      <ul>
+        <li v-for="link in links">
+          <v-link :href="link.href">{{link.name}}</v-link>
+        </li>
+      </ul>
+    </div>
 
     <slot></slot>
   </div>
 </template>
 
 
+<script>
+  import VLink from '../components/VLink.vue'
+
+  export default {
+    components: {
+      VLink
+    },
+    data () {
+      return {
+        links: [
+          {href:'/', name: 'Home'},
+          {href:'/blog', name: 'Blog'}
+        ]
+      }
+    }
+  }
+
+
+</script>
+
+
 <style scoped>
   .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 15px 30px;
-    background: #f9f7f5;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav {
+    float: left;
+    width: 20%;
+    height: 100%;
+    /*border-right: 2px solid;*/
+    padding: 10px;
+  }
+
+  .nav ul {
+    list-style: none;
+  }
+
+  .nav li {
+
+  }
+
+  slot {
+    width: 80%;
+    float: right;
   }
 </style>

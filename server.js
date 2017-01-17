@@ -4,7 +4,7 @@ var cookieParser = require('cookie-parser');
 var errorHandler = require("errorhandler");
 var envConfig = require('./env').config;
 
-var index = require('./src/routes/index');
+var index = require('./src/server/routes/index');
 var app = express();
 
 
@@ -18,7 +18,7 @@ if (env === 'dev') {
     app.use(webpackDevMiddleware(webpack(WebpackConfig), {
         publicPath: '/dist/',
         stats: {
-            colors: true
+          colors: true
         }
     }));
     app.set('views', __dirname + '/src/pages');

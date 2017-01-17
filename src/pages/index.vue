@@ -1,6 +1,8 @@
 <template>
   <main-layout>
-    <p>Welcome home</p>
+  	<div class="main-content">
+  		<p>Welcome home</p>
+  	</div>
   </main-layout>
 </template>
 
@@ -13,3 +15,16 @@
     }
   }
 </script>
+
+<style scoped>
+	p {
+		margin: 0;
+	}
+
+	.main-content {
+		width: 80%;
+		height: 100%;
+		float: right;
+		padding: 10px;
+	}
+</style>

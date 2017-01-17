@@ -48,20 +48,29 @@ module.exports = {
 	devServer: {
     historyApiFallback: true,
     noInfo: true
-  }
+  },
+  plugins: [
+  	new ExtractTextPlugin("styles.css", {allChunks: true})
+  ]
 }
 
-module.exports.devtool = 'source-map'
-module.exports.plugins = (module.exports.plugins || []).concat([
-  new ExtractTextPlugin("styles.css",{allChunks: true}),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: "vendor",
-    filename: "[name].js",
-    minChunks: Infinity,
-  }),
-  new webpack.optimize.UglifyJsPlugin({
-    compressor: {
-      warnings: false
-    }
-  })
-])
+if (process.env.NODE_ENV === 'production') {
+	module.exports.devtool = '#source-map'
+	module.exports.plugins = (module.exports.plugins || []).concat([
+		new webpack.DefinePlugin({
+	    'process.env': {
+	      NODE_ENV: '"production"'
+	    }
+	  }),
+	  new webpack.optimize.CommonsChunkPlugin({
+	    name: "vendor",
+	    filename: "[name].js",
+	    minChunks: Infinity,
+	  }),
+	  new webpack.optimize.UglifyJsPlugin({
+	    compressor: {
+	      warnings: false
+	    }
+	  })
+	]);
+}
