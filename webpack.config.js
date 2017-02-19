@@ -23,6 +23,9 @@ module.exports = {
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
   },
+  resolve: {
+    fallback: path.join(__dirname, 'node_modules')
+  },
 	module: {
     loaders: [
       {
@@ -33,6 +36,15 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel',
         exclude: /node_modules/
+      },
+      {
+        test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
+        loader: 'file-loader',
+        query: {
+          limit: 10000,
+          name: '[name].[ext]?[hash:7]',
+          prefix: 'font'
+        }
       },
       { test: /\.html$/, loader: 'raw' },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader','css-loader') },
@@ -67,6 +79,10 @@ if (process.env.NODE_ENV === 'production') {
 	    filename: "[name].js",
 	    minChunks: Infinity,
 	  }),
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+      $: "jquery"
+    }),
 	  new webpack.optimize.UglifyJsPlugin({
 	    compressor: {
 	      warnings: false

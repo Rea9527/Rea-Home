@@ -1,4 +1,6 @@
 export default {
 	'/': 'index',
-	'/index': 'index'
+	'/index': 'index',
+	'/blog': 'blog',
+	'/newBlog': 'new-blog'
 }

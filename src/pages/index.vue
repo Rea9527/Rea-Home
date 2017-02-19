@@ -1,7 +1,11 @@
 <template>
   <main-layout>
-  	<div class="main-content">
+  	<div slot="header">
   		<p>Welcome home</p>
+  	</div>
+
+  	<div slot="content">
+  		
   	</div>
   </main-layout>
 </template>
@@ -17,14 +21,5 @@
 </script>
 
 <style scoped>
-	p {
-		margin: 0;
-	}
 
-	.main-content {
-		width: 80%;
-		height: 100%;
-		float: right;
-		padding: 10px;
-	}
 </style>
