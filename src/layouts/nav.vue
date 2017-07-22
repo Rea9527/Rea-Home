@@ -1,7 +1,7 @@
 <template>
 	<div slot="nav" class="nav">
     <ul>
-      <li v-for="link in links">
+      <li :v-for="link in links">
         <v-link :href="link.href">{{link.name}}</v-link>
       </li>
     </ul>

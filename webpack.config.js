@@ -38,6 +38,10 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+      {
         test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
         loader: 'file-loader',
         query: {

@@ -1,12 +1,13 @@
 <template>
-	<div>
+	<div id="mymark">
 		<slot></slot>
 	</div>
 </template>
 
 <script>
-	import $ from 'jquery'
-	// import mdp from '../lib/markdown/markdown-plus.min.js'
+	
+	import mdp from 'markdown-core/markdown-core-node'
+	// import $ from 'jquery'
 	// import hljs from 'highlight'
 
 	export default {
@@ -22,6 +23,8 @@
 
 		methods: {
 			VMarkdown () {
+				var html = mdp.render('#mymark')
+				console.log(html);
 			}
 		}
 	}
