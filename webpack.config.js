@@ -46,7 +46,6 @@ module.exports = {
         loader: 'file-loader',
         query: {
           limit: 10000,
-          name: '[name].[ext]?[hash:7]',
           prefix: 'font'
         }
       },
@@ -66,7 +65,28 @@ module.exports = {
     noInfo: true
   },
   plugins: [
-  	new ExtractTextPlugin("styles.css", {allChunks: true})
+    new ExtractTextPlugin("styles.css", {allChunks: true}),
+
+    new webpack.optimize.CommonsChunkPlugin({
+	    name: "vendor",
+	    filename: "[name].js",
+	    minChunks: function(module, count) {
+        return (
+          module.resource &&
+          /\.js/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0
+        )
+      },
+	  }),
+    
+    new webpack.optimize.UglifyJsPlugin({
+	    compressor: {
+	      warnings: false
+      },
+      sourceMap: true
+	  })
   ]
 }
 
@@ -81,16 +101,20 @@ if (process.env.NODE_ENV === 'production') {
 	  new webpack.optimize.CommonsChunkPlugin({
 	    name: "vendor",
 	    filename: "[name].js",
-	    minChunks: Infinity,
+	    minChunks: function(module, count) {
+        return (
+          module.resource &&
+          /\.js/.test(module.resource) &&
+          module.resource.indexOf(
+            path.join(__dirname, '../node_modules')
+          ) === 0
+        )
+      },
 	  }),
     new webpack.ProvidePlugin({
       jQuery: "jquery",
       $: "jquery"
     }),
-	  new webpack.optimize.UglifyJsPlugin({
-	    compressor: {
-	      warnings: false
-	    }
-	  })
+	  
 	]);
 }
